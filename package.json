@@ -14,6 +14,10 @@
       {
         "language": "php",
         "path": "./snippets/model.json"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/route.json"
       }
     ]
   }

@@ -1,6 +1,22 @@
 {
+  "Laravel Model: Model": {
+    "prefix": "lvModelMake",
+    "isFileTemplate": true,
+    "body": [
+      "${RELATIVE_FILEPATH}",
+      "0 ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/)?(\\w+)([\\\\\\/])$|(\\w+\\.php)/${1:/capitalize}/g}",
+      "0 ${RELATIVE_FILEPATH/(\\w+)([\\\\\\/])|(\\w+\\.php)/${1:/capitalize}${2:+\\\\}/g}",
+      "2 ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${2}/g};",
+      "0 ${RELATIVE_FILEPATH/(\\w+)([\\\\\\/])|([\\\\\\/])/${1:/capitalize}${2:+\\\\}/g}",
+      "0 ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(\\w*)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}/g};",
+      "1 ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}/g};",
+      "TM DIRECTORY \\\\${TM_DIRECTORY/(?:.*[\\/\\\\])?app[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g}",
+      "namespace ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}${2:+\\\\}/g};"
+    ],
+    "description": "Protected Table: The table associated with the model."
+  },
   "Laravel Model: Table": {
-    "prefix": "Model::table",
+    "prefix": "lvModelTable",
     "body": [
       "/**",
       " * The table associated with the model.",
@@ -12,7 +28,7 @@
     "description": "Protected Table: The table associated with the model."
   },
   "Laravel Model: Primary Key": {
-    "prefix": "Model::primaryKey",
+    "prefix": "lvModelPrimaryKey",
     "body": [
       "/**",
       " * The primary key associated with the table.",
