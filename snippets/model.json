@@ -1,22 +1,27 @@
 {
-  "Laravel Model: Model": {
-    "prefix": "lvModelMake",
+  "Laravel Model: Make": {
+    "prefix": "Model-make",
     "isFileTemplate": true,
     "body": [
-      "${RELATIVE_FILEPATH}",
-      "0 ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/)?(\\w+)([\\\\\\/])$|(\\w+\\.php)/${1:/capitalize}/g}",
-      "0 ${RELATIVE_FILEPATH/(\\w+)([\\\\\\/])|(\\w+\\.php)/${1:/capitalize}${2:+\\\\}/g}",
-      "2 ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${2}/g};",
-      "0 ${RELATIVE_FILEPATH/(\\w+)([\\\\\\/])|([\\\\\\/])/${1:/capitalize}${2:+\\\\}/g}",
-      "0 ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(\\w*)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}/g};",
-      "1 ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}/g};",
-      "TM DIRECTORY \\\\${TM_DIRECTORY/(?:.*[\\/\\\\])?app[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g}",
-      "namespace ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}${2:+\\\\}/g};"
+      "<?php",
+      "",
+      "namespace ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(app|src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}${2:+\\\\}/g};",
+      "",
+      "use Illuminate\\Database\\Eloquent\\Model;",
+      "${3/^(?!\\s*$).+/use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;/}",
+      "${4/^(?!\\s*$).+/use Illuminate\\Database\\Eloquent\\SoftDeletes;/}",
+      "",
+      "class ${TM_FILENAME_BASE} extends Model",
+      "{",
+      "\t${3:use HasFactory;}",
+      "\t${4:use SoftDeletes;}",
+      "\t$0",
+      "}"
     ],
-    "description": "Protected Table: The table associated with the model."
+    "description": "Generate a new model."
   },
   "Laravel Model: Table": {
-    "prefix": "lvModelTable",
+    "prefix": "Model-table",
     "body": [
       "/**",
       " * The table associated with the model.",
@@ -25,10 +30,10 @@
       " */",
       "protected \\$table = '$0';"
     ],
-    "description": "Protected Table: The table associated with the model."
+    "description": "The table associated with the model."
   },
   "Laravel Model: Primary Key": {
-    "prefix": "lvModelPrimaryKey",
+    "prefix": "Model-primaryKey",
     "body": [
       "/**",
       " * The primary key associated with the table.",
@@ -37,10 +42,10 @@
       " */",
       "protected \\$primaryKey = '$0';"
     ],
-    "description": "Primary Key: The primary key associated with the table."
+    "description": "The primary key associated with the table."
   },
   "Laravel Model: Incrementing": {
-    "prefix": "Model::incrementing",
+    "prefix": "Model-incrementing",
     "body": [
       "/**",
       " * Indicates if the IDs are auto-incrementing.",
@@ -49,10 +54,10 @@
       " */",
       "public \\$incrementing = ${1:false};"
     ],
-    "description": "Incrementing: Indicates if the IDs are auto-incrementing."
+    "description": "Indicates if the IDs are auto-incrementing."
   },
   "Laravel Model: Timestamps": {
-    "prefix": "Model::timestamps",
+    "prefix": "Model-timestamps",
     "body": [
       "/**",
       " * Indicates if the model should be timestamped.",
@@ -61,10 +66,10 @@
       " */",
       "public \\$timestamps = ${1:false};"
     ],
-    "description": "Timestamps: Indicates if the model should be timestamped."
+    "description": "Indicates if the model should be timestamped."
   },
   "Laravel Model: Date Format": {
-    "prefix": "Model::dateFormat",
+    "prefix": "Model-dateFormat",
     "body": [
       "/**",
       " * The storage format of the model's date columns.",
@@ -73,10 +78,10 @@
       " */",
       "protected \\$dateFormat = '$0';"
     ],
-    "description": "Date Format: The storage format of the model's date columns."
+    "description": "The storage format of the model's date columns."
   },
   "Laravel Model: Database Connection": {
-    "prefix": "Model::databaseConnection",
+    "prefix": "Model-databaseConnection",
     "body": [
       "/**",
       " * The database connection that should be used by the model.",
@@ -85,10 +90,10 @@
       " */",
       "protected \\$connection = '$0';"
     ],
-    "description": "Datebase Connection: The database connection that should be used by the model."
+    "description": "The database connection that should be used by the model."
   },
   "Laravel Model: Attribute Casting": {
-    "prefix": "Model::casts",
+    "prefix": "Model-casts",
     "body": [
       "/**",
       " * The attributes that should be cast to native types.",
@@ -99,10 +104,10 @@
       "\t'$1' => '${0:type}',",
       "];"
     ],
-    "description": "Attribute Casting: he attributes that should be cast to native types within your model."
+    "description": "he attributes that should be cast to native types within your model."
   },
   "Laravel Model: The model's default values for attributes.": {
-    "prefix": "Model::attributes",
+    "prefix": "Model-attributes",
     "body": [
       "/**",
       " * The model's default values for attributes.",
@@ -113,10 +118,10 @@
       "\t'$0' => '${1}',",
       "];"
     ],
-    "description": "Default attributes: The model's default values for attributes."
+    "description": "The model's default values for attributes."
   },
   "Laravel Model: Mass Assignment (Fillable)": {
-    "prefix": "Model::fillable",
+    "prefix": "Model-fillable",
     "body": [
       "/**",
       " * The attributes that are mass assignable.",
@@ -125,22 +130,22 @@
       " */",
       "protected \\$fillable = ['$0'];"
     ],
-    "description": "Mass Assignment (Fillable): The attributes that are mass assignable."
+    "description": "The attributes that are mass assignable."
   },
   "Laravel Model: Guard Attributes": {
-    "prefix": "Model::guarded",
+    "prefix": "Model-guarded",
     "body": [
       "/**",
-      " * The attributes that are mass assignable.",
+      " * The attributes that aren't mass assignable.",
       " *",
       " * @var array",
       " */",
-      "protected \\$fillable = ['$0'];"
+      "protected \\$guarded = ['$0'];"
     ],
-    "description": "Mass Assignment (Fillable): The attributes that are mass assignable."
+    "description": "The attributes that aren't mass assignable."
   },
   "Laravel Model: Prunable": {
-    "prefix": "Model::prunable",
+    "prefix": "Model-prunable",
     "body": [
       "use ${0|Prunable,MassPrunable|};",
       "\n",
@@ -152,10 +157,10 @@
       "\treturn static::where('${1:created_at}', '${2:<=}', ${3:now()->subMonth()});",
       "}"
     ],
-    "description": "Prunable: Periodically delete models that are no longer needed."
+    "description": "Periodically delete models that are no longer needed."
   },
   "Laravel Model: Dates": {
-    "prefix": "Model::dates",
+    "prefix": "Model-dates",
     "body": [
       "/**",
       " * The attributes that should be mutated to dates.",
@@ -164,10 +169,10 @@
       " */",
       "protected \\$dates = ['created_at', 'updated_at', '${0:deleted_at}'];"
     ],
-    "description": "Dates: The attributes that should be mutated to dates."
+    "description": "The attributes that should be mutated to dates."
   },
   "Laravel Model: Boot": {
-    "prefix": "Model::boot",
+    "prefix": "Model-boot",
     "body": [
       "/**",
       " * The \"booting\" method of the model.",
@@ -181,10 +186,10 @@
       "\t$0",
       "}"
     ],
-    "description": "Boot: The \"booting\" method of the model."
+    "description": "The \"booting\" method of the model."
   },
   "Laravel Model: Local Scope": {
-    "prefix": "Model::scope",
+    "prefix": "Model-scope",
     "body": [
       "/**",
       " * Scope a query to only include $1",
@@ -197,10 +202,10 @@
       "\treturn \\$query->where('$3'$0);",
       "}"
     ],
-    "description": "Local Scope: Query a local scope within your model."
+    "description": "Query a local scope within your model."
   },
   "Laravel Model: Dynamic Scope": {
-    "prefix": "Model::scopeOfType",
+    "prefix": "Model-scopeOfType",
     "body": [
       "/**",
       " * Scope a query to only include $1 of a given type.",
@@ -213,10 +218,10 @@
       "\treturn \\$query->where('$3', \\$type);",
       "}"
     ],
-    "description": "Dynamic Scope: Define a scope that accepts parameters within your model."
+    "description": "Define a scope that accepts parameters within your model."
   },
   "Laravel Model: One to One Relationship": {
-    "prefix": "Model::hasOne",
+    "prefix": "Model-hasOne",
     "body": [
       "/**",
       " * Get the $1 associated with the ${TM_FILENAME_BASE}",
@@ -228,10 +233,10 @@
       "\treturn \\$this->hasOne($0::class)${3:->latestOfMany()}${4:->oldestOfMany()}${5:->ofMany('$6','${7|min,max|}')};",
       "}"
     ],
-    "description": "One to One: Define a One to One relationship within your model."
+    "description": "Define a One to One relationship within your model."
   },
   "Laravel Model: Belongs To Relationship": {
-    "prefix": "Model::belongsTo",
+    "prefix": "Model-belongsTo",
     "body": [
       "/**",
       " * Get the $1 that owns the ${TM_FILENAME_BASE}",
@@ -243,10 +248,10 @@
       "\treturn \\$this->belongsTo($0::class)${4:->withDefault(['$5'=>'$6'])};",
       "}"
     ],
-    "description": "Belongs To: Define a Belongs To relationship within your model."
+    "description": "Define a Belongs To relationship within your model."
   },
   "Laravel Model: One to Many": {
-    "prefix": "Model::hasMany",
+    "prefix": "Model-hasMany",
     "body": [
       "/**",
       " * Get all of the $1 for the ${TM_FILENAME_BASE}",
@@ -258,10 +263,10 @@
       "\treturn \\$this->hasMany($0::class);",
       "}"
     ],
-    "description": "One to Many: Define a One to Many relationship within your model."
+    "description": "Define a One to Many relationship within your model."
   },
   "Laravel Model: Many to Many": {
-    "prefix": "Model::belongsToMany",
+    "prefix": "Model-belongsToMany",
     "body": [
       "/**",
       " * The $1 that belong to the ${TM_FILENAME_BASE}",
@@ -273,10 +278,10 @@
       "\treturn \\$this->belongsToMany($0::class);",
       "}"
     ],
-    "description": "Many to Many: Define a Many to Many relationship within your model."
+    "description": "Define a Many to Many relationship within your model."
   },
   "Laravel Model: Belongs to Many": {
-    "prefix": "Model::belongsToMany",
+    "prefix": "Model-belongsToMany",
     "body": [
       "/**",
       " * The $1 that belong to the ${TM_FILENAME_BASE}",
@@ -288,10 +293,10 @@
       "\treturn \\$this->belongsToMany($0::class);",
       "}"
     ],
-    "description": "Belongs to Many: Define a Belongs to Many relationship within your model."
+    "description": "Define a Belongs to Many relationship within your model."
   },
   "Laravel Model: Has Many Through": {
-    "prefix": "Model::hasManyThrough",
+    "prefix": "Model-hasManyThrough",
     "body": [
       "/**",
       " * Get all of the $1 for the ${TM_FILENAME_BASE}",
@@ -303,10 +308,10 @@
       "\treturn \\$this->hasManyThrough($0::class);",
       "}"
     ],
-    "description": "Has Many Through: Define a Has Many Through relationship within your model."
+    "description": "Define a Has Many Through relationship within your model."
   },
   "Laravel Model: Has One Through": {
-    "prefix": "Model::hasOneThrough",
+    "prefix": "Model-hasOneThrough",
     "body": [
       "/**",
       " * Get the $1 associated with the ${TM_FILENAME_BASE}",
@@ -318,10 +323,10 @@
       "\treturn \\$this->hasOneThrough($3::class, $4::class);",
       "}"
     ],
-    "description": "Has One Through: Define a Has One Through relationship within your model. (5.8+)"
+    "description": "Define a Has One Through relationship within your model. (5.8+)"
   },
   "Laravel Model: Morph To": {
-    "prefix": "Model::morphTo",
+    "prefix": "Model-morphTo",
     "body": [
       "/**",
       " * Get the parent ${1}able model.",
@@ -331,10 +336,10 @@
       "\treturn \\$this->morphTo();",
       "}"
     ],
-    "description": "Morph To: Get the 'able' model "
+    "description": "Get the 'able' model "
   },
   "Laravel Model: Morph One": {
-    "prefix": "Model::morphOne",
+    "prefix": "Model-morphOne",
     "body": [
       "/**",
       " * Get the models ${1}.",
@@ -346,10 +351,10 @@
       "\treturn \\$this->morphOne(${0}::class, '${1}able')${4:->latestOfMany()}${5:->oldestOfMany()}${6:->ofMany('$7','${8|min,max|}')};",
       "}"
     ],
-    "description": "Morph One: Define a Morph One relationship within your model."
+    "description": "Define a Morph One relationship within your model."
   },
   "Laravel Model: Morph Many": {
-    "prefix": "Model::morphMany",
+    "prefix": "Model-morphMany",
     "body": [
       "/**",
       " * Get all the models ${1}.",
@@ -361,10 +366,10 @@
       "\treturn \\$this->morphMany(${0}::class, '${1}able');",
       "}"
     ],
-    "description": "Morph Many: Define a Morph to many relationship within your model."
+    "description": "Define a Morph to many relationship within your model."
   },
   "Laravel Model: Morphed By Many": {
-    "prefix": "Model::morphedByMany",
+    "prefix": "Model-morphedByMany",
     "body": [
       "/**",
       " * Get all of the ${4:/downcase} that are assigned this ${3}.",
@@ -376,10 +381,10 @@
       "\treturn \\$this->morphedByMany(${4}::class, '${3}able');",
       "}"
     ],
-    "description": "Morphed By Many: Define relationship to parent models."
+    "description": "Define relationship to parent models."
   },
   "Laravel Model: Hidden": {
-    "prefix": "Model::hidden",
+    "prefix": "Model-hidden",
     "body": [
       "/**",
       " * The attributes that should be hidden for arrays.",
@@ -388,10 +393,10 @@
       " */",
       "protected \\$hidden = ['$0'];"
     ],
-    "description": "Hidden: The attributes that should be hidden for arrays."
+    "description": "The attributes that should be hidden for arrays."
   },
   "Laravel Model: Visible": {
-    "prefix": "Model::visible",
+    "prefix": "Model-visible",
     "body": [
       "/**",
       " * The attributes that should be visible in arrays.",
@@ -400,10 +405,10 @@
       " */",
       "protected \\$visible = ['$0'];"
     ],
-    "description": "Visible: The attributes that should be visible in arrays."
+    "description": "The attributes that should be visible in arrays."
   },
   "Laravel Model: Appends": {
-    "prefix": "Model::appends",
+    "prefix": "Model-appends",
     "body": [
       "/**",
       " * The accessors to append to the model's array form.",
@@ -412,10 +417,10 @@
       " */",
       "protected \\$appends = ['$0'];"
     ],
-    "description": "Appends: The accessors to append to the model's array form."
+    "description": "The accessors to append to the model's array form."
   },
   "Laravel Model: Touches": {
-    "prefix": "Model::touches",
+    "prefix": "Model-touches",
     "body": [
       "/**",
       " * The relationships that should be touched on save.",
@@ -424,10 +429,10 @@
       " */",
       "protected \\$touches = [$0];"
     ],
-    "description": "Touches: The relationships that should be touched on save."
+    "description": "The relationships that should be touched on save."
   },
   "Laravel Model: KeyType": {
-    "prefix": "Model::keyType",
+    "prefix": "Model-keyType",
     "body": [
       "/**",
       " * The \"type\" of the auto-incrementing ID.",
@@ -436,10 +441,10 @@
       " */",
       "protected \\$keyType = '${1:int}';"
     ],
-    "description": "KeyType: The \"type\" of the auto-incrementing ID."
+    "description": "The \"type\" of the auto-incrementing ID."
   },
   "Laravel Model: PerPage": {
-    "prefix": "Model::perPage",
+    "prefix": "Model-perPage",
     "body": [
       "/**",
       " * The number of models to return for pagination.",
@@ -448,10 +453,10 @@
       " */",
       "protected \\$perPage = $0;"
     ],
-    "description": "PerPage: The number of models to return for pagination."
+    "description": "The number of models to return for pagination."
   },
   "Laravel Model: Created At": {
-    "prefix": "Model::createdAt",
+    "prefix": "Model-createdAt",
     "body": [
       "/**",
       " * The name of the \"created at\" column.",
@@ -460,10 +465,10 @@
       " */",
       "const CREATED_AT = '${1:created_at}';$0"
     ],
-    "description": "Created At: The name of the \"created at\" column."
+    "description": " The name of the \"created at\" column."
   },
   "Laravel Model: Updated At": {
-    "prefix": "Model::updatedAt",
+    "prefix": "Model-updatedAt",
     "body": [
       "/**",
       " * The name of the \"updated at\" column.",
@@ -472,10 +477,10 @@
       " */",
       "const UPDATED_AT = '${1:updated_at}';$0"
     ],
-    "description": "Updated At: The name of the \"updated at\" column."
+    "description": "The name of the \"updated at\" column."
   },
   "Laravel Model: Deleted At": {
-    "prefix": "Model::deletedAt",
+    "prefix": "Model-deletedAt",
     "body": [
       "/**",
       " * The name of the \"deleted at\" column.",
@@ -484,10 +489,10 @@
       " */",
       "const DELETED_AT = '${1:deleted_at}';$0"
     ],
-    "description": "Deleted At: The name of the \"deleted at\" column."
+    "description": "The name of the \"deleted at\" column."
   },
   "Laravel Model: Dispatches Events": {
-    "prefix": "Model::dispatchesEvents",
+    "prefix": "Model-dispatchesEvents",
     "body": [
       "use Notifiable;",
       "",
@@ -500,10 +505,10 @@
       "\t'$1' => $2,",
       "];"
     ],
-    "description": "Dispatches Events: The event map for the model."
+    "description": "The event map for the model."
   },
   "Laravel Model: Accessor": {
-    "prefix": "Model::accessor",
+    "prefix": "Model-accessor",
     "body": [
       "/**",
       " * Get the $1",
@@ -516,10 +521,10 @@
       "\treturn ${3:\\$value};",
       "}"
     ],
-    "description": "Accessors: Define an accessor for the model."
+    "description": "Define an accessor for the model."
   },
   "Laravel Model: Mutator": {
-    "prefix": "Model::mutator",
+    "prefix": "Model-mutator",
     "body": [
       "/**",
       " * Set the $1",
@@ -532,6 +537,6 @@
       "\treturn \\$this->attributes['$3'] = ${4:\\$value};",
       "}"
     ],
-    "description": "Mutators: Define a mutator for the model."
+    "description": "Define a mutator for the model."
   }
 }
