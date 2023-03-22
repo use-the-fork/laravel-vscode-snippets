@@ -1,0 +1,12 @@
+{
+  "Router-model.sublime-snippet": {
+    "prefix": "Route-model",
+    "body": ["\\$router->model('${1:user}', '${2:App\\Models\\User}')$3"],
+    "description": "Register a model binder for a wildcard."
+  },
+  "Router-pattern.sublime-snippet": {
+    "prefix": "Route-pattern",
+    "body": ["\\$router->pattern('${1:id}', '${2:[0-9]+}')$3"],
+    "description": "Set a global where pattern on all routes."
+  }
+}
