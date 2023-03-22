@@ -1,0 +1,15 @@
+{
+  "Laravel Controller: Construct": {
+    "prefix": "Controller-construct",
+    "body": [
+      "/**",
+      " * Instantiate a new controller instance.",
+      " */",
+      "public function __construct()",
+      "{",
+      "\treturn ${1:$this->middleware('${2:auth}');}",
+      "}"
+    ],
+    "description": "Instantiate a new controller instance."
+  }
+}
