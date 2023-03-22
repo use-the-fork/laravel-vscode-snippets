@@ -18,6 +18,10 @@
       {
         "language": "php",
         "path": "./snippets/route.json"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/serviceprovider.json"
       }
     ]
   }

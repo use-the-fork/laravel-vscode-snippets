@@ -1,0 +1,38 @@
+{
+  "Service Provider: Make": {
+    "prefix": "lvServiceProvider-make",
+    "isFileTemplate": true,
+    "body": [
+      "<?php",
+      "",
+      "namespace ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(app|src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}${2:+\\\\}/g};",
+      "",
+      "use Illuminate\\Support\\ServiceProvider;",
+      "",
+      "class ${TM_FILENAME_BASE} extends ServiceProvider",
+      "{",
+      "/**",
+      " * Register services.",
+      " *",
+      " * @return void",
+      " */",
+      "public function register()",
+      "{",
+      "\t//",
+      "}",
+      "",
+      "/**",
+      " * Bootstrap services.",
+      " *",
+      " * @return void",
+      " */",
+      "public function boot()",
+      "{",
+      "\t${3:\\$this->loadMigrationsFrom(base_path('${4:database/migrations/organization}'));}",
+      "\t${5:\\$this->loadRoutesFrom(base_path('${6:routes/organization/web.php}'));}",
+      "}",
+      "}"
+    ],
+    "description": "Generate a new Service Provider."
+  }
+}

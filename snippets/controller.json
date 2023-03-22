@@ -1,6 +1,24 @@
 {
-  "Laravel Controller: Construct": {
-    "prefix": "Controller-construct",
+  "Controller: Make": {
+    "prefix": "lvController-make",
+    "isFileTemplate": true,
+    "body": [
+      "<?php",
+      "",
+      "namespace ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(app|src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}${2:+\\\\}/g};",
+      "",
+      "use Illuminate\\Routing\\Controller;",
+      "",
+      "class ${TM_FILENAME_BASE} extends Controller",
+      "{",
+      "${3:lvController-construct$4}",
+      "",
+      "}"
+    ],
+    "description": "Generate a new Service Provider."
+  },
+  "Controller: __construct": {
+    "prefix": "lvController-construct",
     "body": [
       "/**",
       " * Instantiate a new controller instance.",

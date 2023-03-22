@@ -1,6 +1,6 @@
 {
-  "Laravel Route: Any": {
-    "prefix": "Route-any",
+  "Route: Any": {
+    "prefix": "lvRoute-any",
     "body": [
       "Route::any('${2:users/{id\\}}', function (${3:\\$id}) {",
       "    $4",
@@ -8,8 +8,8 @@
     ],
     "description": "Basic Route with Closure."
   },
-  "Laravel Route: Match": {
-    "prefix": "Route-match",
+  "Route: Match": {
+    "prefix": "lvRoute-match",
     "body": [
       "Route::match([${1:'get', 'post'}], '${2:/user/profile}', function () {",
       "    $3",
@@ -17,23 +17,23 @@
     ],
     "description": "Register a new route with the given verbs."
   },
-  "Laravel Route: Redirect": {
-    "prefix": "Route-redirect",
+  "Route: Redirect": {
+    "prefix": "lvRoute-redirect",
     "body": "Route::redirect('${1:URI}', '${2:URI}', ${3:301});",
     "description": "a convenient shortcut for performing a simple redirect"
   },
-  "Laravel Route: Permanent Redirect": {
-    "prefix": "Route-permanentRedirect",
+  "Route: Permanent Redirect": {
+    "prefix": "lvRoute-permanentRedirect",
     "body": "Route::permanentRedirect('${1:URI}', '${2:URI}');",
     "description": "a convenient shortcut for performing a 301 redirect"
   },
-  "Laravel Route: View": {
-    "prefix": "Route-view",
+  "Route: View": {
+    "prefix": "lvRoute-view",
     "body": "Route::view('${1:URI}', '${2:viewName}' ${3:, ['$4' => $5] });",
     "description": "route only needs to return a view; you may provide an array of data to pass to the view as an optional third argument"
   },
-  "Laravel Route: Middleware": {
-    "prefix": "Route-middleware",
+  "Route: Middleware": {
+    "prefix": "lvRoute-middleware",
     "body": [
       "Route::middleware(['${1:auth}'${2:, '${3:second}'}])->group(function () {",
       "    $0",
@@ -41,8 +41,8 @@
     ],
     "description": "Create a Group of Routers with middleware"
   },
-  "Laravel Route: Controller": {
-    "prefix": "Route-controller",
+  "Route: Controller": {
+    "prefix": "lvRoute-controller",
     "body": [
       "Route::controller($1::class)->group(function () {",
       "\t$0",
@@ -50,8 +50,8 @@
     ],
     "description": "Define the common controller for all of the routes within the group"
   },
-  "Laravel Route: Domain": {
-    "prefix": "Route-domain",
+  "Route: Domain": {
+    "prefix": "lvRoute-domain",
     "body": [
       "Route::domain('${1:account.example.com}')->group(function () {",
       "\t$0",
@@ -59,84 +59,84 @@
     ],
     "description": "Define the common controller for all of the routes within the group"
   },
-  "Laravel Route: Prefix": {
-    "prefix": "Route-prefix",
+  "Route: Prefix": {
+    "prefix": "lvRoute-prefix",
     "body": ["Route::prefix('${1:admin}')->group(function () {", "\t$2", "});"],
     "description": "Prefix each route in the group with a given URI."
   },
-  "Laravel Route: Name": {
-    "prefix": "Route-name",
+  "Route: Name": {
+    "prefix": "lvRoute-name",
     "body": ["Route::name('${1:admin}.')->group(function () {", "\t$0", "});"],
     "description": "Prefix prefix each route name in the group with a given string."
   },
-  "Laravel Route: fallback": {
-    "prefix": "Route-fallback",
+  "Route: fallback": {
+    "prefix": "lvRoute-fallback",
     "body": ["Route::fallback(function () {", "\t$0", "});"],
     "description": "Define a route that will be executed when no other route matches the incoming request"
   },
-  "Laravel Route: current": {
-    "prefix": "Route-current",
+  "Route: current": {
+    "prefix": "lvRoute-current",
     "body": "Route::current()",
     "description": "Accessing current route; Return type: Illuminate\\Routing\\Route"
   },
-  "Laravel Route: Current Route Name": {
-    "prefix": "Route-currentRouteName",
+  "Route: Current Route Name": {
+    "prefix": "lvRoute-currentRouteName",
     "body": "Route::currentRouteName()",
     "description": "Accessing current route; Return type: string"
   },
-  "Laravel Route: Current Route Action": {
-    "prefix": "Route-currentRouteAction",
+  "Route: Current Route Action": {
+    "prefix": "lvRoute-currentRouteAction",
     "body": ["Route::currentRouteAction();"],
     "description": "Get the current route name."
   },
-  "Laravel Route: Dispatch": {
-    "prefix": "Route-dispatch",
+  "Route: Dispatch": {
+    "prefix": "lvRoute-dispatch",
     "body": "Route::dispatch(${1:\\$request});",
     "description": "Dispatch the request to the application."
   },
-  "Laravel Route: Dispatch To Route": {
-    "prefix": "Route-dispatchToRoute",
+  "Route: Dispatch To Route": {
+    "prefix": "lvRoute-dispatchToRoute",
     "body": "Route::dispatchToRoute(${1:\\$request});",
     "description": "Dispatch the request to a route and return the response."
   },
-  "Laravel Route: Where": {
-    "prefix": "Route-where",
+  "Route: Where": {
+    "prefix": "lvRoute-where",
     "body": "->where('${1:name}', '${2:[A-Za-z]+}');",
     "description": "Constrain the format of your route parameters using the where method."
   },
-  "Laravel Route: Where Number": {
-    "prefix": "Route-whereNumber",
+  "Route: Where Number": {
+    "prefix": "lvRoute-whereNumber",
     "body": "->whereNumber('${1:name}');",
     "description": "Quickly add Number pattern constraint."
   },
-  "Laravel Route: Where Alpha Numeric": {
-    "prefix": "Route-whereAlphaNumeric",
+  "Route: Where Alpha Numeric": {
+    "prefix": "lvRoute-whereAlphaNumeric",
     "body": "->whereAlphaNumeric('${1:name}');",
     "description": "Quickly add Alpha Numeric pattern constraint."
   },
-  "Laravel Route: Where Uuid": {
-    "prefix": "Route-whereUuid",
+  "Route: Where Uuid": {
+    "prefix": "lvRoute-whereUuid",
     "body": "->whereUuid('${1:id}');",
     "description": "Quickly add Uuid pattern constraint."
   },
-  "Laravel Route: Where Ulid": {
-    "prefix": "Route-whereUlid",
+  "Route: Where Ulid": {
+    "prefix": "lvRoute-whereUlid",
     "body": "->whereUlid('${1:id}');",
     "description": "Quickly add Ulid pattern constraint."
   },
-  "Laravel Route: Where In": {
-    "prefix": "Route-whereIn",
+  "Route: Where In": {
+    "prefix": "lvRoute-whereIn",
     "body": "->whereIn('${1:category}', ['${2:movie}']);",
     "description": "Quickly add \"In\" pattern constraint."
   },
-  "Laravel Route: With Trashed": {
-    "prefix": "Route-withTrashed",
+  "Route: With Trashed": {
+    "prefix": "lvRoute-withTrashed",
     "body": "->withTrashed('${1:profile}');",
     "description": "Quickly add \"In\" pattern constraint."
   },
 
-  "Laravel Route: Closure": {
-    "prefix": "Route-closure",
+  "Route: Closure": {
+    "prefix": "lvRoute-closure",
     "body": [
       "Route::${1:|get,post,put,patch,delete,options|}('${2:users/{id\\}}', function (${3:\\$id}) {",
       "    $4",
@@ -145,16 +145,16 @@
     "description": "Basic Route with Closure."
   },
 
-  "Laravel Route: Controller Action": {
-    "prefix": "Route-controllerAction",
+  "Route: Controller Action": {
+    "prefix": "lvRoute-controllerAction",
     "body": [
       "Route::${1:|get,post,put,patch,delete,options|}('${2:users/{id\\}}', [${3:$User}Controller::class, '${4:index}']);"
     ],
     "description": "Basic Route  to a controller action."
   },
 
-  "Laravel Route: Delete": {
-    "prefix": "Route-delete",
+  "Route: Delete": {
+    "prefix": "lvRoute-delete",
     "body": [
       "Route::delete('${1:users/{id\\}}', function (${2:\\$id}) {",
       "    $3",
@@ -162,8 +162,8 @@
     ],
     "description": "Basic Delete Route."
   },
-  "Laravel Route: Get": {
-    "prefix": "Route-get",
+  "Route: Get": {
+    "prefix": "lvRoute-get",
     "body": [
       "Route::get('${1:users/{id\\}}', function (${2:\\$id}) {",
       "    $3",
@@ -171,8 +171,8 @@
     ],
     "description": "Basic Get Route."
   },
-  "Laravel Route: Post": {
-    "prefix": "Route-post",
+  "Route: Post": {
+    "prefix": "lvRoute-post",
     "body": [
       "Route::post('${1:users/{id\\}}', function (${2:\\$id}) {",
       "    $3",
@@ -180,8 +180,8 @@
     ],
     "description": "Basic Post Route."
   },
-  "Laravel Route: Put": {
-    "prefix": "Route-put",
+  "Route: Put": {
+    "prefix": "lvRoute-put",
     "body": [
       "Route::put('${1:users/{id\\}}', function (${2:\\$id}) {",
       "    $3",
@@ -189,20 +189,20 @@
     ],
     "description": "Basic Put Route."
   },
-  "Laravel Route: Resource": {
-    "prefix": "Route-resource",
+  "Route: Resource": {
+    "prefix": "lvRoute-resource",
     "body": ["Route::resource('${1:user}', ${2:User}Controller::class);"],
     "description": "Route to a Controller\n maps: \n index, create, store, show, edit, update, destroy"
   },
-  "Laravel Route: API Resource": {
-    "prefix": "Route-apiResource",
+  "Route: API Resource": {
+    "prefix": "lvRoute-apiResource",
     "body": [
       "Route::apiResource('${1:user}', ${2:User/capitalize}Controller::class);"
     ],
     "description": "Route to a RESTful Controller\n maps: \n index, store, show, update, destroy"
   },
-  "Laravel Route: Scope Bindings": {
-    "prefix": "Route-scopeBindings",
+  "Route: Scope Bindings": {
+    "prefix": "lvRoute-scopeBindings",
     "body": [
       "Route::scopeBindings()->group(function (${2:User/capitalize} ${2:\\$user}) {",
       "\t$3",
