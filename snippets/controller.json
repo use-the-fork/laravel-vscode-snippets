@@ -13,9 +13,10 @@
       "{",
       "${3:lvController-construct$4}",
       "",
+      "${5:lvController-action$6}",
       "}"
     ],
-    "description": "Generate a new Service Provider."
+    "description": "Generate a new Controller.\n\nPress Tab then Ctrl+Space at stops to exapnd snippets."
   },
   "Controller: __construct": {
     "prefix": "lvController-construct",
@@ -25,9 +26,24 @@
       " */",
       "public function __construct()",
       "{",
-      "\treturn ${1:$this->middleware('${2:auth}');}",
+      "\treturn ${1:\\$this->middleware('${2:auth}');}",
       "}"
     ],
-    "description": "Instantiate a new controller instance."
+    "description": "construct function for controller."
+  },
+  "Controller: actions": {
+    "prefix": "lvController-action",
+    "body": [
+      "/**",
+      " * The \"${1|__invoke,index,create,store,show,edit,update,destroy|}\" method of the controller.",
+      " *",
+      " * ${3:@return void}",
+      " */",
+      "public function ${1|__invoke,index,create,store,show,edit,update,destroy|}(${2:Request \\$request})",
+      "{",
+      "\t //",
+      "\t${3:return void;}",
+      "}"
+    ]
   }
 }
