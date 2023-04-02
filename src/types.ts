@@ -1,29 +1,19 @@
-export type SnippetMapping<T> = {
-  key: keyof T;
-  prefix: T[keyof T];
+export interface SnippetMapping {
+  key: string;
+  prefix: string;
   body: string[];
   description?: string;
+  isFileTemplate?: boolean;
 };
 
-export const Placeholders = {
-  FileName: 'file',
-  FirstTab: 'first',
-  SecondTab: 'second',
-  ThirdTab: 'third',
-  Capitalize: 'capitalize',
-  TypeProps: 'typeProps',
-  TypeState: 'typeState',
-} as const;
 
 export const Mappings = {
   variable: '\\$',
+  FileNameBase: '${TM_FILENAME_BASE}',
   FileName: '${1:${TM_FILENAME_BASE}}',
   FirstTab: '${1:first}',
   SecondTab: '${2:second}',
   ThirdTab: '${3:third}',
   Capitalize: '${1/(.*)/${1:/capitalize}/}',
-  TypeProps: 'type Props = {}',
-  TypeState: 'type State = {}',
-  InterfaceProps: 'interface Props {}',
-  InterfaceState: 'interface State {}',
+  Namespace: 'namespace ${RELATIVE_FILEPATH/^(?:.*[\\\\\\/])?(app|src)(?=[\\\\\\/])|[\\\\\\/][^\\\\\\/]*$|([\\\\\\/])/${1:/capitalize}${2:+\\\\}/g};'
 } as const;

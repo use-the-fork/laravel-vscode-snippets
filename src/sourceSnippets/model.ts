@@ -1,354 +1,79 @@
-import { v } from '../helpers/formatters';
-import { Placeholders, SnippetMapping } from '../types';
+import { arraySnippet, docBlock, tabStop, varSnippet } from '../sourceSnippets/sharedSnippets';
+import { SnippetMapping } from '../types';
 
 
-type ModelMappings = {
-//   reactArrowFunctionComponent: 'rafc';
-//   reactArrowFunctionComponentWithPropTypes: 'rafcp';
-//   reactArrowFunctionExportComponent: 'rafce';
-//   reactClassComponentPropTypes: 'rccp';
-//   reactClassComponentRedux: 'rcredux';
-//   reactClassComponentReduxPropTypes: 'rcreduxp';
-  laravelModelTable: 'lvModel-table';
-//   reactClassExportComponent: 'rce';
-//   reactClassExportComponentWithPropTypes: 'rcep';
-//   reactClassExportPureComponent: 'rpce';
-//   reactClassPureComponent: 'rpc';
-//   reactClassPureComponentWithPropTypes: 'rpcp';
-//   reactFunctionMemoComponent: 'rmc';
-//   reactFunctionMemoComponentWithPropTypes: 'rmcp';
-//   reactFunctionalComponentRedux: 'rfcredux';
-//   reactFunctionalComponentReduxPropTypes: 'rfcreduxp';
-//   reactFunctionalComponent: 'rfc';
-//   reactFunctionalComponentWithPropTypes: 'rfcp';
-//   reactFunctionalExportComponent: 'rfce';
-};
-
-export type ModelSnippet = SnippetMapping<ModelMappings>;
-
-const laravelModelTable: ModelSnippet = {
-  key: 'laravelModelTable',
+export const laravelModelTable: SnippetMapping = {
+  key: 'Laravel Model: Table',
   prefix: 'lvModel-table',
   body: [
-    '/**',
-      ' * The table associated with the model.',
-      ' *',
-      ' * @var string',
-      ' */',
-    '',
-    `protected  ${v('table')}  = '${Placeholders.FirstTab}';`,
-    '',
+    ...docBlock('The table associated with the model.', [{ name: '', description: '@var string' }]),
+    ...varSnippet('table', [{ key: '', value: tabStop(0, 'table') }], 'protected')
   ]
 };
 
-// const reactClassExportComponent: ComponentsSnippet = {
-//   key: 'reactClassExportComponent',
-//   prefix: 'rce',
-//   body: [
-//     ...reactComponent,
-//     '',
-//     `export class ${Placeholders.FileName} extends Component {`,
-//     ...innerComponentReturn,
-//     '}',
-//     ...exportDefault,
-//   ],
-//   description: 'Creates a React component class with ES7 module system',
-// };
+export const laravelModelPrimaryKey: SnippetMapping = {
+  key: 'Laravel Model: Primary Key',
+  prefix: 'lvModel-primaryKey',
+  body: [
+    ...docBlock('The primary key associated with the table.', [{ name: '', description: '@var string' }]),
+    ...varSnippet('primaryKey', [{ key: '', value: `'${tabStop(0)}'` }], 'protected')
+  ]
+};
 
-// const reactFunctionalExportComponent: ComponentsSnippet = {
-//   key: 'reactFunctionalExportComponent',
-//   prefix: 'rfce',
-//   body: [
-//     ...react,
-//     '',
-//     `function ${Placeholders.FileName}() {`,
-//     ...innerComponent,
-//     '}',
-//     ...exportDefault,
-//   ],
-//   description: 'Creates a React Functional Component with ES7 module system',
-// };
+export const laravelModelIncrementing: SnippetMapping = {
+  key: 'Laravel Model: Incrementing',
+  prefix: 'lvModel-incrementing',
+  body: [
+    ...docBlock('Indicates if the IDs are auto-incrementing.', [{ name: '', description: '@var bool' }]),
+    ...varSnippet('incrementing', [{ key: '', value: `'${tabStop(1, 'false')}'` }], 'public')
+  ]
+};
 
-// const reactFunctionalComponent: ComponentsSnippet = {
-//   key: 'reactFunctionalComponent',
-//   prefix: 'rfc',
-//   body: [
-//     ...react,
-//     '',
-//     `export default function ${Placeholders.FileName}() {`,
-//     ...innerComponent,
-//     '}',
-//     '',
-//   ],
-//   description: 'Creates a React Functional Component with ES7 module system',
-// };
+export const laravelModelTimestamps: SnippetMapping = {
+  key: 'Laravel Model: Timestamps',
+  prefix: 'lvModel-timestamps',
+  body: [
+    ...docBlock('Indicates if the model should be timestamped.', [{ name: '', description: '@var bool' }]),
+    ...varSnippet('timestamps', [{ key: '', value: `'${tabStop(1, 'false')}'` }], 'public')
+  ]
+};
 
-// const reactFunctionalComponentWithPropTypes: ComponentsSnippet = {
-//   key: 'reactFunctionalComponentWithPropTypes',
-//   prefix: 'rfcp',
-//   body: [
-//     ...reactPropTypes,
-//     '',
-//     `function ${Placeholders.FileName}(props) {`,
-//     ...innerComponent,
-//     '}',
-//     '',
-//     `${Placeholders.FileName}.propTypes = {}`,
-//     ...exportDefault,
-//     '',
-//   ],
-//   description:
-//     'Creates a React Functional Component with ES7 module system with PropTypes',
-// };
+export const laravelModelDateFormat: SnippetMapping = {
+  key: 'Laravel Model: Date Format',
+  prefix: 'lvModel-dateFormat',
+  body: [
+    ...docBlock("The storage format of the model's date columns.", [{ name: '', description: '@var string' }]),
+    ...varSnippet('dateFormat', [{ key: '', value: `'${tabStop(0)}'` }], 'protected')
+  ]
+};
 
-// const reactArrowFunctionExportComponent: ComponentsSnippet = {
-//   key: 'reactArrowFunctionExportComponent',
-//   prefix: 'rafce',
-//   body: [
-//     ...react,
-//     '',
-//     `const ${Placeholders.FileName} = () => {`,
-//     ...innerComponent,
-//     '}',
-//     ...exportDefault,
-//   ],
-//   description:
-//     'Creates a React Arrow Function Component with ES7 module system',
-// };
+export const laravelModelDatabaseConnection: SnippetMapping = {
+  key: 'Laravel Model: Database Connection',
+  prefix: 'lvModel-databaseConnection',
+  body: [
+    ...docBlock('The database connection that should be used by the model.', [{ name: '', description: '@var string' }]),
+    ...varSnippet('connection', [{ key: '', value: `'${tabStop(0)}'` }], 'protected')
+  ]
+};
 
-// const reactArrowFunctionComponent: ComponentsSnippet = {
-//   key: 'reactArrowFunctionComponent',
-//   prefix: 'rafc',
-//   body: [
-//     ...react,
-//     '',
-//     `export const ${Placeholders.FileName} = () => {`,
-//     ...innerComponent,
-//     '}',
-//     '',
-//   ],
-//   description:
-//     'Creates a React Arrow Function Component with ES7 module system',
-// };
+export const laravelModelAttributeCasting: SnippetMapping = {
+  key: 'Laravel Model: Attribute Casting',
+  prefix: 'lvModel-casts',
+  body: [
+    ...docBlock('The attributes that should be cast to native types.', [{ name: '', description: '@var array' }]),
+    ...varSnippet('casts', arraySnippet([
+      { key: '', value: `'${tabStop(1)}' => '${tabStop(0, 'type')}'` }
+    ]), 'protected')
+  ]
+};
 
-// const reactArrowFunctionComponentWithPropTypes: ComponentsSnippet = {
-//   key: 'reactArrowFunctionComponentWithPropTypes',
-//   prefix: 'rafcp',
-//   body: [
-//     ...reactPropTypes,
-//     '',
-//     `const ${Placeholders.FileName} = props => {`,
-//     ...innerComponent,
-//     '}',
-//     '',
-//     `${Placeholders.FileName}.propTypes = {}`,
-//     ...exportDefault,
-//   ],
-//   description:
-//     'Creates a React Arrow Function Component with ES7 module system with PropTypes',
-// };
-
-// const reactClassExportComponentWithPropTypes: ComponentsSnippet = {
-//   key: 'reactClassExportComponentWithPropTypes',
-//   prefix: 'rcep',
-//   body: [
-//     "import PropTypes from 'prop-types'",
-//     ...reactComponent,
-//     '',
-//     `export class ${Placeholders.FileName} extends Component {`,
-//     '  static propTypes = {}',
-//     '',
-//     ...innerComponentReturn,
-//     '}',
-//     ...exportDefault,
-//   ],
-//   description: 'Creates a React component class with ES7 module system',
-// };
-
-// const reactClassPureComponent: ComponentsSnippet = {
-//   key: 'reactClassPureComponent',
-//   prefix: 'rpc',
-//   body: [
-//     ...reactPureComponent,
-//     '',
-//     `export default class ${Placeholders.FileName} extends PureComponent {`,
-//     ...innerComponentReturn,
-//     '}',
-//     '',
-//   ],
-//   description: 'Creates a React pure component class with ES7 module system',
-// };
-
-// const reactClassExportPureComponent: ComponentsSnippet = {
-//   key: 'reactClassExportPureComponent',
-//   prefix: 'rpce',
-//   body: [
-//     ...reactPureComponent,
-//     '',
-//     `export class ${Placeholders.FileName} extends PureComponent {`,
-//     ...innerComponentReturn,
-//     '}',
-//     ...exportDefault,
-//   ],
-//   description:
-//     'Creates a React pure component class with ES7 module system export',
-// };
-
-// const reactClassPureComponentWithPropTypes: ComponentsSnippet = {
-//   key: 'reactClassPureComponentWithPropTypes',
-//   prefix: 'rpcp',
-//   body: [
-//     "import PropTypes from 'prop-types'",
-//     ...reactPureComponent,
-//     '',
-//     `export default class ${Placeholders.FileName} extends PureComponent {`,
-//     '  static propTypes = {}',
-//     '',
-//     ...innerComponentReturn,
-//     '}',
-//     '',
-//   ],
-//   description: 'Creates a React component class with ES7 module system',
-// };
-
-// const reactFunctionMemoComponent: ComponentsSnippet = {
-//   key: 'reactFunctionMemoComponent',
-//   prefix: 'rmc',
-//   body: [
-//     ...reactWithMemo,
-//     '',
-//     `const ${Placeholders.FileName} = memo(() => {`,
-//     ...innerComponent,
-//     '})',
-//     ...exportDefault,
-//   ],
-//   description: 'Creates a React Memo Function Component with ES7 module system',
-// };
-
-// const reactFunctionMemoComponentWithPropTypes: ComponentsSnippet = {
-//   key: 'reactFunctionMemoComponentWithPropTypes',
-//   prefix: 'rmcp',
-//   body: [
-//     "import PropTypes from 'prop-types'",
-//     ...reactWithMemo,
-//     '',
-//     `const ${Placeholders.FileName} = memo((props) => {`,
-//     ...innerComponent,
-//     '})',
-//     '',
-//     `${Placeholders.FileName}.propTypes = {}`,
-//     ...exportDefault,
-//   ],
-//   description:
-//     'Creates a React Memo Function Component with ES7 module system with PropTypes',
-// };
-
-// const reactClassComponentPropTypes: ComponentsSnippet = {
-//   key: 'reactClassComponentPropTypes',
-//   prefix: 'rccp',
-//   body: [
-//     "import PropTypes from 'prop-types'",
-//     ...reactComponent,
-//     '',
-//     `export default class ${Placeholders.FileName} extends Component {`,
-//     `  static propTypes = {${Placeholders.SecondTab}: ${Placeholders.ThirdTab}}`,
-//     '',
-//     ...innerComponentReturn,
-//     '}',
-//     '',
-//   ],
-//   description:
-//     'Creates a React component class with PropTypes and ES7 module system',
-// };
-
-// const reactClassComponentRedux: ComponentsSnippet = {
-//   key: 'reactClassComponentRedux',
-//   prefix: 'rcredux',
-//   body: [
-//     ...reactComponentWithReduxConnect,
-//     '',
-//     `export class ${Placeholders.FileName} extends Component {`,
-//     ...innerComponentReturn,
-//     '}',
-//     ...reduxComponentExport,
-//   ],
-//   description:
-//     'Creates a React component class with connected redux and ES7 module system',
-// };
-
-// const reactClassComponentReduxPropTypes: ComponentsSnippet = {
-//   key: 'reactClassComponentReduxPropTypes',
-//   prefix: 'rcreduxp',
-//   body: [
-//     "import PropTypes from 'prop-types'",
-//     ...reactComponentWithReduxConnect,
-//     '',
-//     `export class ${Placeholders.FileName} extends Component {`,
-//     '  static propTypes = {',
-//     `    ${Placeholders.SecondTab}: ${Placeholders.ThirdTab}`,
-//     '  }',
-//     '',
-//     ...innerComponentReturn,
-//     '}',
-//     ...reduxComponentExport,
-//   ],
-//   description:
-//     'Creates a React component class with PropTypes with connected redux and ES7 module system',
-// };
-
-// const reactFunctionalComponentRedux: ComponentsSnippet = {
-//   key: 'reactFunctionalComponentRedux',
-//   prefix: 'rfcredux',
-//   body: [
-//     ...reactWithReduxConnect,
-//     '',
-//     `export const ${Placeholders.FileName} = (props) => {`,
-//     ...innerComponent,
-//     '}',
-//     ...reduxComponentExport,
-//   ],
-//   description:
-//     'Creates a React functional component with connected redux and ES7 module system',
-// };
-
-// const reactFunctionalComponentReduxPropTypes: ComponentsSnippet = {
-//   key: 'reactFunctionalComponentReduxPropTypes',
-//   prefix: 'rfcreduxp',
-//   body: [
-//     "import PropTypes from 'prop-types'",
-//     ...reactWithReduxConnect,
-//     '',
-//     `export const ${Placeholders.FileName} = (props) => {`,
-//     ...innerComponent,
-//     '}',
-//     '',
-//     `${Placeholders.FileName}.propTypes = {`,
-//     `  ${Placeholders.SecondTab}: PropTypes.${Placeholders.ThirdTab}`,
-//     '}',
-//     ...reduxComponentExport,
-//   ],
-//   description:
-//     'DEPRECATED: Creates a React functional component with PropTypes with connected redux and ES7 module system',
-// };
 
 export default [
-//   reactArrowFunctionComponent,
-//   reactArrowFunctionComponentWithPropTypes,
-//   reactArrowFunctionExportComponent,
   laravelModelTable,
-//   reactClassComponentPropTypes,
-//   reactClassComponentRedux,
-//   reactClassComponentReduxPropTypes,
-//   reactClassExportComponent,
-//   reactClassExportComponentWithPropTypes,
-//   reactClassExportPureComponent,
-//   reactClassPureComponent,
-//   reactClassPureComponentWithPropTypes,
-//   reactFunctionMemoComponent,
-//   reactFunctionMemoComponentWithPropTypes,
-//   reactFunctionalComponent,
-//   reactFunctionalComponentRedux,
-//   reactFunctionalComponentReduxPropTypes,
-//   reactFunctionalComponentWithPropTypes,
-//   reactFunctionalExportComponent,
+  laravelModelPrimaryKey,
+  laravelModelIncrementing,
+  laravelModelTimestamps,
+  laravelModelDateFormat,
+  laravelModelDatabaseConnection,
+  laravelModelAttributeCasting
 ];

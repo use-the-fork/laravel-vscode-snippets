@@ -1,17 +1,13 @@
-import { formatSnippet } from './formatters';
-import { Snippet } from './generateSnippets';
-import replaceOrRemoveReactImport from './replaceOrRemoveReactImport';
 
-const parseSnippetToBody = (snippet: Snippet) => {
+const parseSnippetToBody = (snippet: any) => {
 
-  const snippetBody = replaceOrRemoveReactImport({
-        prefix: snippet.prefix,
-        body: snippet.body,
-      });
+//   const snippetBody = replaceOrRemoveReactImport({
+//         body: ,
+//       });
 
-  const formattedSnippet = formatSnippet(snippetBody).split('\n');
+//   const formattedSnippet = formatSnippet(snippetBody).split('\n');
 
-  return formattedSnippet;
+  return snippet.body;
 };
 
 export default parseSnippetToBody;

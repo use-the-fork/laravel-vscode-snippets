@@ -1,1 +1,17 @@
-{}
+{
+  "laravelModelTable": {
+    "key": "laravelModelTable",
+    "prefix": "lvModel-table",
+    "body": [
+      "/**",
+      " * The table associated with the model.",
+      " *",
+      " * @var string",
+      " */",
+      "",
+      "protected  \\$table  = '${1:first}';",
+      ""
+    ],
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  }
+}

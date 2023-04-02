@@ -1,8 +1,6 @@
 import { writeFile } from 'fs';
 
-import modelSnippets, {
-    ModelSnippet
-} from '../sourceSnippets/model';
+import modelSnippets from '../sourceSnippets/model';
 // import consoleSnippets, { ConsoleSnippet } from '../sourceSnippets/console';
 // import hooksSnippets, { HooksSnippet } from '../sourceSnippets/hooks';
 // import importsSnippets, { ImportsSnippet } from '../sourceSnippets/imports';
@@ -19,41 +17,40 @@ import modelSnippets, {
 //   TypescriptSnippet,
 // } from '../sourceSnippets/typescript';
 
-import extensionConfig from './extensionConfig';
+//import extensionConfig from './extensionConfig';
 
 import parseSnippetToBody from './parseSnippetToBody';
-import { replaceSnippetPlaceholders } from './snippetPlaceholders';
 
-export type SnippetKeys =
-//   | OthersSnippet['key']
-//   | HooksSnippet['key']
-//   | ImportsSnippet['key']
-//   | ReactNativeSnippet['key']
-//   | TypescriptSnippet['key']
-//   | ReduxSnippet['key']
-  | ModelSnippet['key']
-//   | ConsoleSnippet['key']
-//   | PropTypesSnippet['key']
-//   | TestsSnippet['key'];
+// export type SnippetKeys =
+// //   | OthersSnippet['key']
+// //   | HooksSnippet['key']
+// //   | ImportsSnippet['key']
+// //   | ReactNativeSnippet['key']
+// //   | TypescriptSnippet['key']
+// //   | ReduxSnippet['key']
+//   | ModelSnippet['key']
+// //   | ConsoleSnippet['key']
+// //   | PropTypesSnippet['key']
+// //   | TestsSnippet['key'];
 
-export type Snippet =
-//   | OthersSnippet
-//   | HooksSnippet
-//   | ImportsSnippet
-//   | ReactNativeSnippet
-//   | TypescriptSnippet
-//   | ReduxSnippet
-  | ModelSnippet
-//   | ConsoleSnippet
-//   | PropTypesSnippet
-//   | TestsSnippet;
+// export type Snippet =
+// //   | OthersSnippet
+// //   | HooksSnippet
+// //   | ImportsSnippet
+// //   | ReactNativeSnippet
+// //   | TypescriptSnippet
+// //   | ReduxSnippet
+//   | ModelSnippet
+// //   | ConsoleSnippet
+// //   | PropTypesSnippet
+// //   | TestsSnippet;
 
-export type Snippets = {
-  [key in SnippetKeys]: Snippet;
-};
+// export type Snippets = {
+//   [key in SnippetKeys]: Snippet;
+// };
 
 const getSnippets = () => {
-    const { languageScopes } = extensionConfig();
+    //const { languageScopes } = extensionConfig();
 
   const snippets = [
      ...modelSnippets,
@@ -65,15 +62,16 @@ const getSnippets = () => {
     // ...reduxSnippets,
     // ...testsSnippets,
     // ...othersSnippets,
-  ].reduce((acc, snippet) => {
-    acc[snippet.key] = Object.assign(snippet, {
+  ].reduce((snippet) => {
+    return Object.assign(snippet, {
       body: parseSnippetToBody(snippet),
-      scope: languageScopes,
+      scope: 'php',
     });
-    return acc;
-  }, {} as Snippets);
+  }, {});
 
-  return replaceSnippetPlaceholders(JSON.stringify(snippets, null, 2));
+  console.log(modelSnippets);
+
+  return JSON.stringify(snippets, null, 2);
 };
 
 const generateSnippets = () =>

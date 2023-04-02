@@ -3,7 +3,7 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "module": "amd",
+    "module": "commonjs",
     "moduleResolution": "Node",
     "noEmit": true,
     "noImplicitAny": true,
